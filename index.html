@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5F7FB">
+<title>JF Go lab</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><span class="mark" aria-hidden>JF</span><span>JF Go lab</span></div>
+    <div class="top-note">The real JF Go screen and rules, running in this page. Nothing here touches the app or anyone's data.</div>
+    <button class="btn ghost small grow" id="growPhone" type="button">Bigger phone</button>
+    <button class="btn ghost small" id="resetAll" type="button">Start over</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="stage" id="stage">
+    <div class="phone" id="phoneBox">
+      <iframe id="phone" src="app/" title="JF Go, running in the lab" allow="camera; geolocation; accelerometer; gyroscope; magnetometer"></iframe>
+    </div>
+    <div class="strip" id="strip">
+      <div class="strip-cell"><span class="k">Time</span><span class="v" id="sTime">…</span></div>
+      <div class="strip-cell"><span class="k">Nearest drop</span><span class="v" id="sWhere">…</span></div>
+      <div class="strip-cell"><span class="k">Steps today</span><span class="v" id="sSteps">…</span></div>
+      <div class="strip-cell"><span class="k">Go points</span><span class="v" id="sPoints">…</span></div>
+    </div>
+    <div class="walkbar" id="walkbar" hidden>
+      <span id="walkText">Walking…</span>
+      <button class="btn small" id="walkStop" type="button">Stop</button>
+    </div>
+  </section>
+
+  <section class="side">
+    <div class="hero">
+      <h1>JF Go, on your desk.</h1>
+      <p>Pick a test below, press <b>Set it up</b>, then play it on the phone. Every answer comes from the same rules the live server runs.</p>
+    </div>
+
+    <div class="seg" role="tablist" id="tabs">
+      <button role="tab" data-tab="try" aria-selected="true">Try it</button>
+      <button role="tab" data-tab="controls" aria-selected="false">Controls</button>
+      <button role="tab" data-tab="how" aria-selected="false">Explainer</button>
+      <button role="tab" data-tab="log" aria-selected="false">Log</button>
+    </div>
+
+    <div class="panel" data-panel="try" id="scenarios"></div>
+
+    <div class="panel" data-panel="controls" id="controls" hidden></div>
+
+    <div class="panel" data-panel="how" hidden>
+      <article class="how">
+        <div class="card">
+          <h3>Drops</h3>
+          <p>Three a day, on real footpaths inside public parks, 400 m to 1.5 km from your drop area. The park data is OpenStreetMap: 153,415 path points across Greater Melbourne and Geelong.</p>
+          <p>Your drop area is set the first time you open JF Go, rounded to about 500 m, so the server never keeps a home address. In Settings you can move it here (3 times a day), pick Close, Medium or Far, and ask for step-free paths.</p>
+        </div>
+        <div class="card">
+          <h3>Collecting</h3>
+          <ul>
+            <li>Within <b>40 m</b> of the drop, plus GPS wobble, never more than 65 m.</li>
+            <li>GPS accurate to <b>65 m</b> or better, from the last <b>90 seconds</b>.</li>
+            <li>Drops close at midnight. New ones land the next day.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Points</h3>
+          <p class="big">10 + 2 per 100 m</p>
+          <p>Counted on how far the drop was placed (up to 1.5 km). Gold drops pay double. The week caps at <b>250</b> Go points.</p>
+          <ul>
+            <li><b>Full points</b> need proof you walked: JF Go open on the way (on foot, under 16 km/h, at least half the distance, 300 m at most), or Health steps since the drops landed (60% of the distance).</li>
+            <li><b>Half points</b> if most of the trip was driven.</li>
+            <li><b>Base points</b> (10, gold 20) if there's no walking proof.</li>
+            <li>After collecting, an optional exercise on the spot is worth <b>+20</b> for 30 minutes.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What stops cheating</h3>
+          <ul>
+            <li>Too far away: "About 850 m to go. Keep walking."</li>
+            <li>Fuzzy GPS (over 65 m), or a location older than 90 seconds.</li>
+            <li>An impossible jump (over 150 km/h since the last location).</li>
+            <li>A location the phone marks as fake.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Crates</h3>
+          <p>Most drops leave a crate. It opens with steps walked anywhere, counted from when you got it: <b>small 2,000</b>, <b>big 5,000</b>, <b>gold 10,000</b>. The bag holds 3. Everyone gets a free big crate every Monday.</p>
+          <p>Opening one pays a JFmoji item you don't own yet (big crates: Normal or better, gold: Uncommon or better) and 10, 25 or 40 Go points.</p>
+        </div>
+        <div class="card">
+          <h3>Blocks</h3>
+          <p>The map is cut into hexagons about 350 m across. Walking with JF Go open credits your gym's steps in every block you cross, except your home area (your drop area's block and the six around it).</p>
+          <p>A block belongs to the gym that walked it most over 7 days (150 steps minimum). Your gym's walking shows straight away. Other gyms' walking shows the next day, as a colour only: never a name, a path or a time. Each club's own block is always theirs.</p>
+        </div>
+        <div class="card">
+          <h3>The beam</h3>
+          <p>An optional camera view: a column of light stands where the drop is, worked out from GPS and the compass. Inside the collect range the item appears at the foot of the beam and a tap collects it. No compass? Drag to turn.</p>
+        </div>
+        <div class="card">
+          <h3>Who can see it</h3>
+          <p>Only two accounts: yours and Gab's My Training. Everyone else has no JF Go row, the screen sends them straight back, and the server answers "not found". Try it in <b>Try it → What everyone else sees</b>.</p>
+        </div>
+        <div class="card">
+          <h3>Pilot settings vs launch</h3>
+          <table class="tbl">
+            <tr><th></th><th>Now (you and Gab)</th><th>Launch</th></tr>
+            <tr><td>Go points</td><td>Stay inside JF Go</td><td>Count on the challenge board</td></tr>
+            <tr><td>After dark</td><td>Collect any time</td><td>6am to 9pm, daylight only</td></tr>
+            <tr><td>Other gyms' blocks</td><td>Show after 1 walker</td><td>Show after 3 walkers</td></tr>
+          </table>
+          <p class="muted">Each one is a switch in <b>Controls → Rules</b>, so you can feel the launch version now.</p>
+        </div>
+        <div class="card found">
+          <h3>Found with this lab (6 Oct)</h3>
+          <ul>
+            <li><b>A jump is forgotten after 20 seconds.</b> Claim straight after a fake-GPS jump and it's refused. Wait for the phone's next location upload (every 20 s) and the same claim pays base points and a crate. The server already records the jump; the claim just doesn't look at it. Try it: <b>Try it → Teleport, then wait</b>.</li>
+            <li><b>Stale GPS can loop the map requests.</b> If the phone hasn't reported a location for 45 seconds and the blocks are over 2 minutes old, one tap starts a loop of block requests, several a second, until the GPS comes back. One-line fix. Try it: <b>Try it → Lost signal</b>, then watch the Log.</li>
+          </ul>
+          <p class="muted">Both are in the live pilot. Neither is fixed yet: the lab matches what's live.</p>
+        </div>
+        <div class="card">
+          <h3>Testing outside for real</h3>
+          <ul>
+            <li><b>Jamie:</b> TestFlight build 40 (1.0.12), then My Training → Challenge → JF Go. The App Store version can't use location yet.</li>
+            <li><b>Gab:</b> Safari at app.jamiefitness.au, her normal login, My Training → Challenge → JF Go.</li>
+            <li>Keep JF Go open while you walk. Locked-screen walking still counts through Health steps once they sync.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="panel" data-panel="log" hidden>
+      <div class="card">
+        <div class="row-between"><h3>What the server said</h3><button class="btn ghost small" id="logClear" type="button">Clear</button></div>
+        <p class="muted">Every call the JF Go screen makes, newest first. Routine location uploads are folded in.</p>
+        <ol class="log" id="log"></ol>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <p>Park paths © OpenStreetMap contributors (ODbL). Map © OpenFreeMap, OpenMapTiles. Lab built 6 Oct 2026 from JF Coach build VRf0KrJJ.</p>
+    </footer>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="lab.js"></script>
+</body>
+</html>
