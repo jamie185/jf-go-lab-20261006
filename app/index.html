@@ -25,6 +25,12 @@
   .lab-left p { margin: 0 0 16px; color: rgba(60,60,67,.75); font-size: 15px; line-height: 1.4; }
   html[data-jf-dark] .lab-left p { color: rgba(235,235,245,.65); }
   .lab-left-btn { border: 0; border-radius: 14px; background: #1F2025; color: #fff; font: 600 16px -apple-system, Inter, sans-serif; padding: 13px 18px; width: 100%; cursor: pointer; }
+  .lab-hint { outline: 3px solid #2f7fd6 !important; outline-offset: 2px; }
+  #labTip { position: fixed; z-index: 2147483001; transform: translate(-50%, -100%); background: #2f7fd6; color: #fff; font: 600 13px/1.2 -apple-system, "SF Pro Text", Inter, sans-serif; padding: 7px 11px; border-radius: 10px; pointer-events: none; white-space: nowrap; box-shadow: 0 8px 20px -8px rgba(0,0,0,.45); }
+  #labTip.down { transform: translate(-50%, 0); }
+  #labTip::after { content: ""; position: absolute; left: 50%; margin-left: -6px; border: 6px solid transparent; }
+  #labTip.up::after { top: 100%; border-top-color: #2f7fd6; }
+  #labTip.down::after { bottom: 100%; border-bottom-color: #2f7fd6; }
   @keyframes labFade { from { opacity: 0 } }
 </style>
 </head>

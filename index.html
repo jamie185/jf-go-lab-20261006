@@ -39,22 +39,37 @@
 
   <section class="side">
     <div class="hero">
-      <h1>JF Go, on your desk.</h1>
-      <p>Pick a test below, press <b>Set it up</b>, then play it on the phone. Every answer comes from the same rules the live server runs.</p>
+      <h1>How JF Go works</h1>
+      <p>Ten short steps. Each one explains a piece of JF Go and sets up the phone on the left so you can try it. A <b class="blue">blue label</b> on the phone shows what to tap.</p>
     </div>
 
     <div class="seg" role="tablist" id="tabs">
-      <button role="tab" data-tab="try" aria-selected="true">Try it</button>
+      <button role="tab" data-tab="tour" aria-selected="true">How it works</button>
+      <button role="tab" data-tab="try" aria-selected="false">All tests</button>
       <button role="tab" data-tab="controls" aria-selected="false">Controls</button>
-      <button role="tab" data-tab="how" aria-selected="false">Explainer</button>
       <button role="tab" data-tab="log" aria-selected="false">Log</button>
     </div>
 
-    <div class="panel" data-panel="try" id="scenarios"></div>
+    <div class="panel" data-panel="tour" id="tour"></div>
+
+    <div class="panel" data-panel="try" id="scenarios" hidden></div>
 
     <div class="panel" data-panel="controls" id="controls" hidden></div>
 
-    <div class="panel" data-panel="how" hidden>
+    <div class="panel" data-panel="log" hidden>
+      <div class="card">
+        <div class="row-between"><h3>What the server said</h3><button class="btn ghost small" id="logClear" type="button">Clear</button></div>
+        <p class="muted">Every call the JF Go screen makes, newest first. Routine location uploads are folded in.</p>
+        <ol class="log" id="log"></ol>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <p>Park paths © OpenStreetMap contributors (ODbL). Map © OpenFreeMap, OpenMapTiles. Lab built 6 Oct 2026 from JF Coach build VRf0KrJJ.</p>
+    </footer>
+  </section>
+</main>
+<template id="rulesSheet">
       <article class="how">
         <div class="card">
           <h3>Drops</h3>
@@ -105,7 +120,7 @@
         </div>
         <div class="card">
           <h3>Who can see it</h3>
-          <p>Only two accounts: yours and Gab's My Training. Everyone else has no JF Go row, the screen sends them straight back, and the server answers "not found". Try it in <b>Try it → What everyone else sees</b>.</p>
+          <p>Only two accounts: yours and Gab's My Training. Everyone else has no JF Go row, the screen sends them straight back, and the server answers "not found". Try it in step 9 of the tour.</p>
         </div>
         <div class="card">
           <h3>Pilot settings vs launch</h3>
@@ -120,8 +135,8 @@
         <div class="card found">
           <h3>Found with this lab (6 Oct)</h3>
           <ul>
-            <li><b>A jump is forgotten after 20 seconds.</b> Claim straight after a fake-GPS jump and it's refused. Wait for the phone's next location upload (every 20 s) and the same claim pays base points and a crate. The server already records the jump; the claim just doesn't look at it. Try it: <b>Try it → Teleport, then wait</b>.</li>
-            <li><b>Stale GPS can loop the map requests.</b> If the phone hasn't reported a location for 45 seconds and the blocks are over 2 minutes old, one tap starts a loop of block requests, several a second, until the GPS comes back. One-line fix. Try it: <b>Try it → Lost signal</b>, then watch the Log.</li>
+            <li><b>A jump is forgotten after 20 seconds.</b> Claim straight after a fake-GPS jump and it's refused. Wait for the phone's next location upload (every 20 s) and the same claim pays base points and a crate. The server already records the jump; the claim just doesn't look at it. Try it in step 5 of the tour.</li>
+            <li><b>Stale GPS can loop the map requests.</b> If the phone hasn't reported a location for 45 seconds and the blocks are over 2 minutes old, one tap starts a loop of block requests, several a second, until the GPS comes back. One-line fix. Try it: <b>All tests → Lost signal</b>, then watch the Log.</li>
           </ul>
           <p class="muted">Both are in the live pilot. Neither is fixed yet: the lab matches what's live.</p>
         </div>
@@ -134,21 +149,7 @@
           </ul>
         </div>
       </article>
-    </div>
-
-    <div class="panel" data-panel="log" hidden>
-      <div class="card">
-        <div class="row-between"><h3>What the server said</h3><button class="btn ghost small" id="logClear" type="button">Clear</button></div>
-        <p class="muted">Every call the JF Go screen makes, newest first. Routine location uploads are folded in.</p>
-        <ol class="log" id="log"></ol>
-      </div>
-    </div>
-
-    <footer class="foot">
-      <p>Park paths © OpenStreetMap contributors (ODbL). Map © OpenFreeMap, OpenMapTiles. Lab built 6 Oct 2026 from JF Coach build VRf0KrJJ.</p>
-    </footer>
-  </section>
-</main>
+</template>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script type="module" src="lab.js"></script>
 </body>

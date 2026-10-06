@@ -120,7 +120,7 @@ input[type=range] { width: 100%; accent-color: var(--dark); }
   .top-in { padding: 0 14px; height: 48px; }
   .wrap { grid-template-columns: 1fr; padding: 0 10px 40px; gap: 14px; }
   .stage { position: sticky; top: 48px; z-index: 15; background: var(--canvas); padding: 6px 0 8px; gap: 6px; }
-  .phone { width: 100%; height: 56svh; min-height: 0; border-radius: 26px; padding: 4px; }
+  .phone { width: 100%; height: 46svh; min-height: 0; border-radius: 26px; padding: 4px; }
   .phone.tall { height: 80svh; }
   .phone iframe { border-radius: 22px; }
   .strip { width: 100%; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 4px; }
@@ -136,3 +136,78 @@ input[type=range] { width: 100%; accent-color: var(--dark); }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 [hidden] { display: none !important; }
 .card.found { box-shadow: inset 0 0 0 2px rgba(245,165,36,.45); }
+
+/* the tour */
+b.blue { color: #2f7fd6; }
+#tour { scroll-margin-top: 120px; }
+.t-loop { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-bottom: 10px; }
+.t-tile { border: 0; text-align: left; background: var(--tile); border-radius: 16px; padding: 10px 11px; cursor: pointer; display: grid; gap: 2px; font: inherit; color: var(--ink); box-shadow: 0 1px 0 rgba(0,0,0,.03); transition: background .25s var(--ease), color .25s var(--ease), transform .2s var(--ease); }
+.t-tile:hover { transform: translateY(-1px); }
+.t-tile-n { font-size: 12px; font-weight: 700; color: var(--cap); }
+.t-tile-t { font-size: 14px; font-weight: 650; letter-spacing: -.01em; line-height: 1.15; }
+.t-tile-s { font-size: 12px; color: var(--ink2); line-height: 1.2; }
+.t-tile.on { background: var(--dark); color: #fff; }
+.t-tile.on .t-tile-n, .t-tile.on .t-tile-s { color: rgba(235,240,248,.7); }
+.t-step { padding: 22px 22px 18px; }
+.t-kick { font-size: 13px; font-weight: 650; color: var(--cap); margin-bottom: 6px; }
+.t-step h2 { font-size: 30px; font-weight: 700; margin-bottom: 14px; }
+.t-body { font-size: 16px; max-width: 680px; }
+.t-body p, .t-body ul { margin: 0 0 10px; }
+.t-body .big { font-size: 32px; font-weight: 700; letter-spacing: -.03em; line-height: 1; margin: 4px 0 12px; }
+.t-live { margin: 6px 0 4px; }
+.t-drops td:nth-child(2), .t-drops td:nth-child(3) { white-space: nowrap; }
+.t-doing { margin-top: 16px; border-top: 1px solid var(--hair); padding-top: 14px; }
+.t-doing-h { font-size: 13px; font-weight: 650; color: var(--cap); margin-bottom: 8px; }
+.t-do { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 8px 0; }
+.t-n { width: 26px; height: 26px; border-radius: 50%; background: var(--canvas); display: grid; place-items: center; font-size: 13px; font-weight: 700; color: var(--ink2); }
+.t-do-t { font-weight: 650; margin: 3px 0 6px; }
+.t-do .muted { margin: -2px 0 8px; font-size: 13px; }
+.t-now { display: none; margin-top: 12px; border-radius: 14px; padding: 11px 13px; font-size: 15px; }
+.t-now.on { display: block; animation: rise .35s var(--ease); }
+.t-now.ok, .res.ok { background: var(--okbg); } .t-now.warn, .res.warn { background: var(--warnbg); } .t-now.bad, .res.bad { background: var(--badbg); } .t-now.info { background: var(--infobg); }
+.t-compare td { vertical-align: middle; font-size: 14px; }
+.t-compare td.res { border-radius: 0; font-size: 13px; min-width: 200px; }
+.t-compare td.res.ok, .t-compare td.res.warn, .t-compare td.res.bad { padding-left: 10px; }
+.t-cheats { display: grid; gap: 8px; }
+.t-cheat { background: var(--canvas); border-radius: 14px; padding: 11px 12px; }
+.t-cheat.found { box-shadow: inset 0 0 0 2px rgba(245,165,36,.45); }
+.t-cheat-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.t-cheat-top .muted { font-size: 13px; }
+.t-cheat .res { font-size: 14px; border-radius: 10px; margin-top: 8px; }
+.t-cheat .res:empty { display: none; }
+.t-cheat .res.ok, .t-cheat .res.warn, .t-cheat .res.bad { padding: 8px 10px; }
+.t-cheat .note { color: var(--ink2); margin-top: 4px; font-size: 13px; }
+.t-pic { margin: 6px 0 4px; display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 14px; align-items: center; }
+.t-pic svg { width: 100%; height: auto; }
+.t-key { display: grid; gap: 8px; font-size: 14px; }
+.t-key span { display: flex; align-items: center; gap: 8px; }
+.t-key i { width: 18px; height: 16px; border-radius: 4px; flex: none; }
+.t-crates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 8px 0 4px; }
+.t-crate { border-radius: 16px; padding: 12px; display: grid; gap: 2px; }
+.t-crate.small { background: var(--infobg); } .t-crate.big { background: var(--okbg); } .t-crate.gold { background: var(--warnbg); }
+.t-crate .big { font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
+.t-crate small { color: var(--ink2); font-size: 12px; }
+.t-turn { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.t-deg { font-weight: 650; min-width: 40px; text-align: right; font-variant-numeric: tabular-nums; }
+.t-nav { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 4px 0 10px; }
+.t-nav .sel { width: 100%; }
+.t-step .how .card { background: var(--canvas); }
+@media (max-width: 980px) {
+  #tour { scroll-margin-top: calc(var(--seg-top, 48px) + 56px); }
+  .t-loop { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .t-step { padding: 18px 16px 14px; }
+  .t-step h2 { font-size: 24px; }
+  .t-body { font-size: 15px; }
+  .t-pic { grid-template-columns: 1fr; }
+  .t-compare tr:first-child { display: none; }
+  .t-compare tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; border-bottom: 1px solid var(--hair); padding: 6px 0; }
+  .t-compare td { border-bottom: 0; }
+  .t-compare td.res { grid-column: 1 / -1; min-width: 0; border-radius: 10px; padding: 8px 10px; }
+  .t-compare td.res:has(.muted) { display: none; }
+  .t-loop { gap: 4px; }
+  .t-tile { padding: 7px 9px; border-radius: 12px; }
+  .t-tile-s { display: none; }
+  .t-tile-t { font-size: 13px; }
+  .seg button { white-space: nowrap; font-size: 13px; }
+  .t-crates .big { font-size: 20px; }
+}
